@@ -24,7 +24,7 @@ export function useTodo(){
   const [todoFormData,setTodoFormData] = useState<TodoFormData>({});
   const [editTodoFormData,setEditTodoFormData] = useState<EditTodoFormData>(new Map());
   const [loading,setLoading] = useState(false);
-  const url = 'http://localhost:3000/'
+  const url = 'http://backend_dev:3000/'
 
   async function fetchApiHandler(input:string,id:string,title:string) {
       const response = await fetch(url+input,{method:"POST",headers: {

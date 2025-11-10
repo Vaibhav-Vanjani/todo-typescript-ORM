@@ -6,6 +6,8 @@ dotenv.config();
 
 const prisma = new PrismaClient();
 
+console.log("Prisma is -",prisma);
+
 export async function insertData(id: string, title: string) {
   try {
     const response = await prisma.todo.create({

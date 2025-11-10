@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env        # backend environment variables (DB_URL, JWT_SECRET, etc.)
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend/todo
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "5173:4173"           # host:container (or adjust if using Nginx)
+    restart: always

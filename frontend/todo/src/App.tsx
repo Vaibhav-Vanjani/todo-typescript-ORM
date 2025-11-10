@@ -24,7 +24,13 @@ function App() {
    <>
   {/* Input + Add button */}
   <section className='w-screen h-screen flex flex-col justify-center items-center bg-gray-100'>
-  {loading && <>Loading....</>}
+  {loading && (
+    <div className="flex items-center justify-center space-x-2 text-gray-600">
+      <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
+      <span className="text-sm font-medium">Loading...</span>
+    </div>
+  )}
+
  
   <div className="flex mb-4 w-1/3 gap-2 justify-center">
     <input

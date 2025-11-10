@@ -1,0 +1,18 @@
+FROM node:22
+
+WORKDIR /app
+
+# Copy package.json and lockfile
+COPY package*.json ./
+
+# Install all dependencies (including dev)
+RUN npm install
+
+# Copy source code (optional if using volumes)
+COPY . .
+
+# Expose Vite dev port
+EXPOSE 5173
+
+# Start Vite dev server accessible from host and Docker network
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
