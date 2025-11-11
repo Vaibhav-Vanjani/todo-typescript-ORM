@@ -1,22 +1,21 @@
 version: "3.9"
-
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: backend
-    ports:
-      - "3000:3000"
-    env_file:
-      - ./backend/.env        # backend environment variables (DB_URL, JWT_SECRET, etc.)
-    restart: always
+    backend:
+      build: ./backend
+      ports:
+        - "3000:3000"
+      env_file:
+        - ./backend/.env        # backend environment variables (DB_URL, JWT_SECRET, etc.)
+      networks:
+        - todo_network
 
-  frontend:
-    build:
-      context: ./frontend/todo
-      dockerfile: Dockerfile
-    container_name: frontend
-    ports:
-      - "5173:4173"           # host:container (or adjust if using Nginx)
-    restart: always
+    frontend:
+      build: ./frontend/todo
+      ports:
+        - "5173:4173"           # host:container (or adjust if using Nginx)
+      networks:
+        - todo_network  
+      
+networks:
+  todo_network:
+    driver: bridge
